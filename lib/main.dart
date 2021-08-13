@@ -20,13 +20,13 @@ class MyHomePage extends StatelessWidget {
       id: 't1',
       title: 'New Shoes',
       amount: 69.99,
-      time: DateTime.now(),
+      date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
       title: 'Weekly Groceries',
       amount: 16.53,
-      time: DateTime.now(),
+      date: DateTime.now(),
     ),
   ];
 
@@ -48,9 +48,51 @@ class MyHomePage extends StatelessWidget {
           ),
           Column(
             children: [
-              ...transactions
-                  .map((action) => Card(child: Text(action.title)))
-                  .toList(),
+              ...transactions.map((tx) {
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            border: Border.all(width: 2, color: Colors.purple)),
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          tx.amount.toString(),
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.purple,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tx.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                          Text(
+                            tx.date.toString(),
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              }).toList(),
             ],
           )
         ],
