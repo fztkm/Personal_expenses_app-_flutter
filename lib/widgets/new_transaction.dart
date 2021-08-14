@@ -19,6 +19,7 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
+              onSubmitted: (_) {},
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
