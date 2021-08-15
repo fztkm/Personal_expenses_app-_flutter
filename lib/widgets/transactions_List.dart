@@ -34,46 +34,26 @@ class TransactionsList extends StatelessWidget {
               itemBuilder: (ctx, idx) {
                 Transaction tx = transactions[idx];
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            border: Border.all(width: 2, color: Colors.purple)),
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          '\$:' + tx.amount.toStringAsFixed(2),
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColorDark,
-                          ),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: FittedBox(
+                              child: Text('\$' + tx.amount.toStringAsFixed(2))),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          Text(
-                            DateFormat('yyyy-MM-dd').format(tx.date),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                      title: Text(tx.title,
+                          style: Theme.of(context).textTheme.headline6),
+                      subtitle: Text(DateFormat.yMMMd().format(tx.date)),
+                    ),
                   ),
                 );
               },
