@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transactions_List.dart';
 import 'models/transaction.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText2: TextStyle(
                 fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
               ),
               headline1: TextStyle(
                 fontFamily: 'Opensand',
@@ -47,6 +49,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Transaction> _userTransactions = [];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where(
+          (tx) => tx.date.isAfter(
+            DateTime.now().subtract(Duration(days: 7)),
+          ),
+        )
+        .toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
@@ -101,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            Chart(_recentTransactions),
             TransactionsList(_userTransactions),
           ],
         ),
