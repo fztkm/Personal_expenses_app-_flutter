@@ -28,7 +28,7 @@ class Chart extends StatelessWidget {
         'day': date.substring(0, 1),
         'amount': totalAmount,
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalAmountAllday {
