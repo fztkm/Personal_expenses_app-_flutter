@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText2: TextStyle(
                 fontFamily: 'Quicksand',
-                fontWeight: FontWeight.bold,
               ),
               headline1: TextStyle(
                 fontFamily: 'Opensand',
@@ -104,6 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool _isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+
     AppBar appBar = AppBar(
       title: Text('Personal Expenses'),
       actions: [
@@ -116,8 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    bool _isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -125,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             if (_isLandScape)
               Container(
-                height: (MediaQuery.of(context).size.height -
+                height: (mediaQuery.size.height -
                         appBar.preferredSize.height -
                         MediaQuery.of(context).padding.bottom) *
                     0.1,
