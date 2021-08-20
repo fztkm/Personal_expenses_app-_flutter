@@ -56,6 +56,13 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
