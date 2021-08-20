@@ -5,7 +5,10 @@ import 'package:intl/intl.dart';
 class TransactionItem extends StatelessWidget {
   final Transaction tx;
   final Function(String) deleteTx;
-  TransactionItem({required this.tx, required this.deleteTx});
+  TransactionItem({
+    required this.tx,
+    required this.deleteTx,
+  });
 
   @override
   Widget build(BuildContext context) {
